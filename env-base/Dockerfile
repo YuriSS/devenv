@@ -7,7 +7,7 @@ ENV WORKSPACE=/root/workspace
 
 EXPOSE 3000
 
-RUN apt-get update && apt-get -y install curl fzf ripgrep tree git xclip python3 python3-pip ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config zip unzip
+RUN apt-get update && apt-get -y install curl fzf ripgrep tree git xclip python3 python3-pip ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config zip unzip tmux
 
 # Install Neovim from source.
 RUN mkdir -p /root/TMP
