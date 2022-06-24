@@ -17,17 +17,24 @@ RUN rm -rf /root/TMP
 # Install packer
 RUN git clone --depth 1 https://github.com/wbthomason/packer.nvim /root/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-# Create directory for Neovim configuration files.
-RUN mkdir -p /root/.config/nvim
-
-# Copy Neovim configuration files.
-COPY ./config/ /root/.config/nvim/
+# Copy configuration files.
+COPY ./config/ /root/.config/
+COPY ./home/ /root/
 
 # Create directory for projects (there should be mounted from host).
 RUN mkdir -p /root/workspace
 
 # Set default location after container startup.
 WORKDIR /root/workspace
+
+# Install oh-my-posh
+RUN curl -o /usr/local/bin/oh-my-posh https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64
+RUN chmod +x /usr/local/bin/oh-my-posh
+RUN echo 'eval "$(oh-my-posh init bash --config /root/.config/oh-my-posh/theme.json)"' >> /root/.bashrc
+
+# Configure FZF
+RUN echo 'source /usr/share/bash-completion/completions/fzf' >> /root/.bashrc
+RUN echo 'source /usr/share/doc/fzf/examples/key-bindings.bash' >> /root/.bashrc
 
 # Avoid container exit.
 CMD ["tail", "-f", "/dev/null"]
