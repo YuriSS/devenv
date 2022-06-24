@@ -31,7 +31,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'tsserver', 'eslint', 'cssmodules_ls', 'cssls', 'html' }
+local servers = { 'tsserver', 'eslint', 'cssls', 'html', 'angularls' }
 
 -- Add capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
