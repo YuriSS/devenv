@@ -15,10 +15,13 @@ RUN cd /root/TMP/neovim && git checkout stable && make -j4 && make install
 RUN rm -rf /root/TMP
 
 # Install packer
-Run git clone --depth 1 https://github.com/wbthomason/packer.nvim /root/.local/share/nvim/site/pack/packer/start/packer.nvim
+RUN git clone --depth 1 https://github.com/wbthomason/packer.nvim /root/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 # Create directory for Neovim configuration files.
 RUN mkdir -p /root/.config/nvim
+
+# Copy Neovim configuration files.
+COPY ./config/ /root/.config/nvim/
 
 # Create directory for projects (there should be mounted from host).
 RUN mkdir -p /root/workspace
