@@ -27,14 +27,7 @@ RUN mkdir -p /root/workspace
 # Set default location after container startup.
 WORKDIR /root/workspace
 
-# Install oh-my-posh
-RUN curl -o /usr/local/bin/oh-my-posh https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64
-RUN chmod +x /usr/local/bin/oh-my-posh
-RUN echo 'eval "$(oh-my-posh init bash --config /root/.config/oh-my-posh/theme.json)"' >> /root/.bashrc
-
-# Configure FZF
 RUN echo 'source /usr/share/bash-completion/completions/fzf' >> /root/.bashrc
-RUN echo 'source /usr/share/doc/fzf/examples/key-bindings.bash' >> /root/.bashrc
 
 # Avoid container exit.
 CMD ["tail", "-f", "/dev/null"]
