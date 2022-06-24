@@ -1,0 +1,6 @@
+#!/bin/bash
+repos=$(ls -l $(echo "$WORKSPACE")) &&
+repo=$(echo "$repos" | awk '{ print $9 }' | fzf --height 15%) &&
+repo_path="$REPOS/${repo}" &&
+cd $repo_path
+$SHELL

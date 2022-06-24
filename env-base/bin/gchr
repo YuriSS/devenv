@@ -1,0 +1,6 @@
+#!/bin/bash
+branches=$(git branch --list --remotes) &&
+branch=$(echo "$branches" |
+  fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+branch_name=$(echo "$branch" | sed "s/.* //" | sed "s#origin/##") &&
+git checkout -b $(echo "$branch_name origin/$branch_name")

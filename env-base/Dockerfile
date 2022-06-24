@@ -3,6 +3,7 @@ FROM ubuntu:22.10
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV EDITOR nvim
+ENV WORKSPACE=/root/workspace
 
 EXPOSE 3000
 
@@ -20,12 +21,13 @@ RUN git clone --depth 1 https://github.com/wbthomason/packer.nvim /root/.local/s
 # Copy configuration files.
 COPY ./config/ /root/.config/
 COPY ./home/ /root/
+COPY ./bin/ /usr/local/bin/
 
 # Create directory for projects (there should be mounted from host).
-RUN mkdir -p /root/workspace
+RUN mkdir -p $WORKSPACE
 
 # Set default location after container startup.
-WORKDIR /root/workspace
+WORKDIR $WORKSPACE
 
 RUN echo 'source /usr/share/bash-completion/completions/fzf' >> /root/.bashrc
 
