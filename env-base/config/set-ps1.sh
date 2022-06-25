@@ -32,4 +32,4 @@ function git_color {
 
 source /root/.config/git-prompt.sh
 
-PS1="${debian_chroot:+($debian_chroot)}\[$COLOR_WHITE\]\[$(tput sc; rightprompt; tput rc)\][\h] \u in \[$COLOR_RESET\]\[$COLOR_BLUE\] \W\[$COLOR_RESET\]\[\$(git_color)\]$(__git_ps1 ' ( %s)')\[$COLOR_RESET\]\n\[$COLOR_WHITE\]ﬦ \[$COLOR_RESET\]"
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\[$(tput sc; rightprompt; tput rc)\][\h] \u in \[\033[00m\]\[\033[0;34m\] \W\[\033[00m\]\[$(git_color)\]$(__git_ps1 " ( %s)")\[\033[00m\]\n\[\033[01;32m\]ﬦ \[\033[00m\]'
