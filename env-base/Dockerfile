@@ -4,6 +4,7 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV EDITOR nvim
 ENV WORKSPACE=/root/workspace
+ENV TERM=xterm-color
 
 EXPOSE 3000
 
@@ -26,10 +27,16 @@ COPY ./bin/ /usr/local/bin/
 # Create directory for projects (there should be mounted from host).
 RUN mkdir -p $WORKSPACE
 
+# Download git prompt
+RUN curl -o /root/.config/git-prompt.sh https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+
+# Set some commands
+RUN echo 'source /usr/share/bash-completion/completions/fzf' >> /root/.bashrc
+RUN echo 'set -g default-terminal "screen-256color"' >> ~/.tmux.conf
+RUN echo 'source /root/.config/set-ps1.sh' >> /root/.bashrc
+
 # Set default location after container startup.
 WORKDIR $WORKSPACE
-
-RUN echo 'source /usr/share/bash-completion/completions/fzf' >> /root/.bashrc
 
 # Avoid container exit.
 CMD ["tail", "-f", "/dev/null"]
