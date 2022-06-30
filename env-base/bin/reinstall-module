@@ -1,9 +1,9 @@
 #!/bin/bash
 current_path=$(pwd) &&
-node_modules_path=$(echo "$current_path/node_modules") &&
-repos=$(ls -l $node_modules_path) &&
+node_modules_path="$current_path/node_modules" &&
+repos=$(ls -l "$node_modules_path") &&
 repo=$(echo "$repos" | awk '{ print $9 }' | fzf --height 15%) &&
 repo_name="$repo"
-rm -rf $(echo "$node_modules_path/$repo")
+rm -rf "$node_modules_path\/$repo"
 echo "$repo_name deleted."
 npm i --check-files

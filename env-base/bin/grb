@@ -3,4 +3,4 @@ branches=$(git branch --list) &&
 branch=$(echo "$branches" |
   fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
 branch_name=$(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-git branch -D $(echo "$branch_name")
+git branch -D "$branch_name"
