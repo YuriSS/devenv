@@ -3,7 +3,7 @@ FROM devenv-base
 RUN apt-get update && apt-get -y install build-essential nodejs npm
 
 # Installing dependencies
-RUN npm i -g yarn typescript typescript-language-server vscode-langservers-extracted bash-language-server @angular/language-server @angular/cli
+RUN npm i -g yarn typescript typescript-language-server vscode-langservers-extracted bash-language-server
 
 # Copy configuration files.
 COPY ./config/ /root/.config/

@@ -1,2 +1,2 @@
-return { 'tsserver', 'eslint', 'cssls', 'html', 'bashls', 'angularls' }
+return { 'tsserver', 'eslint', 'cssls', 'html', 'bashls' }
 
